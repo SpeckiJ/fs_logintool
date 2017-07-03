@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  header
+    div.headline='Password Manager 9000'
+  div#info-container
+    div#info(style='display:none')
+  form#form-register(action='/' method='POST')
+   label(for='name') Anmeldename:
+   input#firstname(name='name', type='text', required='', autocomplete='off',placeholder='', maxlength="50")
+   label(for='surname') Nachname:
+   input#firstname(name='surname', type='text', required='', autocomplete='off',placeholder='', maxlength="50")
+   label(for='password') Password:
+   input#firstname(name='password', type='password', required='', autocomplete='off',placeholder='', maxlength="50")
+   input(type='submit', value='Absenden')
+  script(src='https://code.jquery.com/jquery-2.2.4.min.js' integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=' crossorigin='anonymous')
+  script(src='js/index.js')
