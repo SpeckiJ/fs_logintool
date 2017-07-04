@@ -1,0 +1,11 @@
+/**
+ * Config file
+ *
+ **/
+
+module.exports = {
+  
+  // LDAP credentials
+  ldapAdmin: 'cn=root,dc=example,dc=de',
+  ldapPsw: 'eggplant78',
+}
