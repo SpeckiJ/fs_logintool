@@ -11,7 +11,7 @@ var app = express();
 
 var ldap = require('ldapjs');
 var client = ldap.createClient({
-  url: 'ldap://127.0.0.1:2000'
+  url: 'ldap://127.0.0.1:389'
 });
 
 
