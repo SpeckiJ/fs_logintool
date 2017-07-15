@@ -16,7 +16,10 @@ router.post('/', validator.validator, function(req, res, next) {
     const data = validator.escapeHtml(req.body);
     exec("PHP_AUTH_USER=\"" + data.name + "\" PHP_AUTH_PW=\"" + data.password + "\" php oc_login.php", function (error, stdout, stderr) { 
       if (error) {console.log(error);res.status(500).end("Fehler bei der Authentifizierung mit Owncloud.")}
-      if(stdout){
+      console.log(`"${stdout}"`);
+      const oc_response = stdout.split('\n')[0]; // php seems to add a \n to the output
+
+      if(oc_response === 'true'){
         // LDAP Entry
         var entry = {
           objectClass: ['organizationalPerson','inetOrgPerson','top','person'],
