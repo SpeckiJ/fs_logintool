@@ -23,21 +23,21 @@ router.post('/', validator.validator, function(req, res, next) {
         // LDAP Entry
         var entry = {
           objectClass: ['organizationalPerson','inetOrgPerson','top','person'],
-          cn: data.name + data.surname,
-          sn: data.surname,
+          cn: data.name,
+          sn: data.name,
           displayName: data.name,
           userPassword: '{SHA512}' + crypto.createHash('sha512').update(data.password).digest("base64"),
         };
         var groupEntry = new ldap.Change({
           operation: 'add',
           modification: {
-            member: 'cn=' + data.name + data.surname + ',o='+ data.party+ ',dc=geofs,dc=uni-muenster,dc=de'
+            member: 'cn=' + data.name + ',o='+ data.party+ ',dc=geofs,dc=uni-muenster,dc=de'
           }
         });
         req.client.bind(cfg.ldapAdmin, cfg.ldapPsw, function (err) {
           if (err) {console.log(err);res.status(401).end("Fehler bei der Authentifizierung mit dem Server.")}
           else{
-              req.client.add('cn=' + data.name + data.surname + ',o=' + data.party+ ',dc=geofs,dc=uni-muenster,dc=de', entry, function(err) {
+              req.client.add('cn=' + data.name + ',o=' + data.party+ ',dc=geofs,dc=uni-muenster,dc=de', entry, function(err) {
                 if (err) {console.log(err);res.status(500).end("Error Adding User.")}
                 else{
                   req.client.modify('cn=' + data.party + ',dc=geofs,dc=uni-muenster,dc=de', groupEntry, function(err) {

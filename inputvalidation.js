@@ -6,10 +6,6 @@ const checkParams = validator.isObject()
     regex: /^(?=\w{1,50}$).+$/,
     message: 'Name musst be alphanumeric and maximum 50 characters.'
   }))
-  .withRequired('surname', validator.isString({
-    regex: /^(?=\w{1,50}$).+$/,
-    message: 'Surname musst be alphanumeric and maximum 50 characters.'
-  }))
   .withRequired('party', validator.isString({
     regex: /^(fsgi|fsgelok)$/,
     message: 'This should never happen'
